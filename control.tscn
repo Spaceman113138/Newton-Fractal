@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bds4hs6b1hw5f"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_rbr8j"]
+
+[node name="Control" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("1_rbr8j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Number Of Iterations: "
+
+[node name="iterEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="increase" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Increase Iterations"
+
+[node name="decrease" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Decrease Iterations"
+
+[connection signal="text_changed" from="HBoxContainer/iterEdit" to="." method="_on_iter_edit_text_changed"]
+[connection signal="pressed" from="HBoxContainer/increase" to="." method="_on_increase_pressed"]
+[connection signal="pressed" from="HBoxContainer/decrease" to="." method="_on_decrease_pressed"]

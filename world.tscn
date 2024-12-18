@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=4 uid="uid://dk8u6412pttxo"]
+
+[ext_resource type="Script" path="res://fractle_view.gd" id="1_qd65i"]
+[ext_resource type="Script" path="res://world.gd" id="1_rjh6p"]
+[ext_resource type="Shader" path="res://fractleView.gdshader" id="1_ypn2s"]
+[ext_resource type="PackedScene" uid="uid://bds4hs6b1hw5f" path="res://control.tscn" id="4_faa6o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsbec"]
+shader = ExtResource("1_ypn2s")
+shader_parameter/cubicEQ = Vector4(1, 0, 0, -1)
+shader_parameter/derivitive = Vector3(3, 0, 0)
+shader_parameter/colors = PackedVector4Array(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yosqc"]
+orientation = 2
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_rjh6p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="fractleView" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_bsbec")
+mesh = SubResource("PlaneMesh_yosqc")
+script = ExtResource("1_qd65i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_scale = 0.001
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("4_faa6o")]
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 566.0
+offset_bottom = 31.0
+grow_horizontal = 1
